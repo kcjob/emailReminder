@@ -1,0 +1,32 @@
+<?php
+namespace controller;
+
+require_once '../vendor/autoload.php';
+
+class EmailSender
+{
+  static function mailmsg($msg)
+  {
+    // Create the Transport
+    $transport = (new \Swift_SmtpTransport('outgoing.ccny.cuny.edu', 587, 'tls'))
+      -> setUsername('cjob')
+      -> setPassword('Tobagoman@1813')
+    ;
+    // Create the Mailer using your created Transport
+    $mailer = new \Swift_Mailer($transport);
+
+    // Create a message
+    $message = (new \Swift_Message('Hello World!!'))
+      -> setFrom(['cjob@ccny.cuny.edu' => 'Chris Job'])
+      -> setTo(['joepub1962@gmail.com'] );//'dfimiarz@gmail.com']) //, 'other@domain.org' => 'A name']);
+      //->setContentType("text/html")
+      $message-> setBody($msg, 'text\html');
+
+
+    // Send the message
+    $result = $mailer->send($message);
+//    print_r($result);
+  }
+}
+//$xxx = new EmailSender();
+//print_r($xxx->mailmsg());
