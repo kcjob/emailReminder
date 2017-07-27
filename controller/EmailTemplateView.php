@@ -1,7 +1,7 @@
 <?php
   namespace controller;
-
-  require_once('../vendor/autoload.php');
+  
+  use model\db\EmailMessageData;
 
   class EmailTemplateView {
 
@@ -9,13 +9,25 @@
 
     public function __construct()
     {
-      $loader = new \Twig_Loader_Filesystem('../templates');
+      $loader = new \Twig_Loader_Filesystem( __DIR__  . '/../templates');
       $this->twig = new \Twig_Environment($loader);
       return  $this-> twig;
     }
 
-    public function generateView($objValues)
+    /**
+     * 
+     * @param EmailMessageData $emailDataObject
+     * @return string
+     */
+    public function generateView(EmailMessageData $emailDataObject)
     {
+       
+      $templ_var = [];
+      
+      $templ_var['userName'] = $emailDataObject->userName;
+      //TODO: Add all the other variables hers
+        
+      $objValues = get_object_vars($emailDataObject);
       return $this->twig->render('emailremind.html', $objValues);
     }
 

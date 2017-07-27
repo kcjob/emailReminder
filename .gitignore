@@ -1,6 +1,8 @@
-/log/
+log/
 /vendor/
 /archive/
+config/dbinfo.ini
+config/emailParams.ini
 .DS*
 composer.phar
 .ftpcongig
