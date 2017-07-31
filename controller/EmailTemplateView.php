@@ -1,6 +1,6 @@
 <?php
   namespace controller;
-  
+
   use model\db\EmailMessageData;
 
   class EmailTemplateView {
@@ -15,20 +15,23 @@
     }
 
     /**
-     * 
+     *
      * @param EmailMessageData $emailDataObject
      * @return string
      */
     public function generateView(EmailMessageData $emailDataObject)
     {
-       
+
       $templ_var = [];
-      
+
       $templ_var['userName'] = $emailDataObject->userName;
-      //TODO: Add all the other variables hers
-        
+      $templ_var['userEmailAddress'] = $emailDataObject->userEmailAddress;
+      $templ_var['sessionDate'] = $emailDataObject->sessionDate;
+      $templ_var['sessionData'] = $emailDataObject->sessionData;
+      $templ_var['dataArray'] = $emailDataObject->dataArray;
+//print_r($templ_var);
       $objValues = get_object_vars($emailDataObject);
-      return $this->twig->render('emailremind.html', $objValues);
+      return $this->twig->render('emailremind.html', $templ_var);
     }
 
 }

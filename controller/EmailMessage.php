@@ -7,21 +7,19 @@ use \controller\ConfigEmail;
 
 class EmailMessage {
 
-    /**
-     * 
-     * @param array $emailDataArray
-     */
-    static function createAndSendEmail(array $emailDataArray) {
+  /**
+   *
+   * @param array $emailDataArray
+   */
+  static function createAndSendEmail(array $emailDataArray)
+  {
+    $app = new EmailTemplateView();
+    $emailSender = new EmailSender();
 
-        $app = new EmailTemplateView();
-        $emailSender = new EmailSender();
-        
-        foreach ($emailDataArray as $emailDataObject) {
-            
-            $msg = $app->generateView($emailDataObject);
-
-            EmailSender::mailmsg($msg, $emailDataObject);
-        }
+    foreach ($emailDataArray as $emailDataObject)
+    {
+      $msg = $app->generateView($emailDataObject);
+      $emailSender->mailmsg($msg, $emailDataObject);
     }
-
+  }
 }

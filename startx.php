@@ -43,9 +43,12 @@ try {
     echo "Somethin aint working\n" . $e->getMessage();
 }
 
+
+//
 try {
     EmailMessage::createAndSendEmail($emailDataArray);
 } catch (Exception $e) {
     $log->error($e->getMessage());
     echo "Somethin aint working\n" . $e->getMessage();
+
 }
