@@ -15,7 +15,7 @@ use Monolog\Handler\StreamHandler;
 
 // create a log channel
 $log = new Logger('database');
-$dbStream = new StreamHandler('../log/calSessons.log', Logger::WARNING);
+$dbStream = new StreamHandler('log/emailReminder.log', Logger::WARNING);
 $log->pushHandler($dbStream);
 
 //CONNECT TO DATABASE
