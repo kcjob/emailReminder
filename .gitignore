@@ -1,0 +1,16 @@
+log/
+/vendor/
+/archive/
+../scidiv/
+config/dbinfo.ini
+config/emailParams.ini
+.DS*
+composer.phar
+.ftpcongig
+.DS_Store
+/.DS_Store
+._*
+*~
+.ftp*
+*.save
+*.old
