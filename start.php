@@ -5,6 +5,7 @@ require_once( __DIR__ . '/vendor/autoload.php');
 use \Optout\DBConnect;
 use \Optout\OptoutDAO;
 use \Optout\AddUserToDB;
+use \Optout\UpdateUserSettings;
 /*
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
@@ -14,6 +15,9 @@ $log = new Logger('database');
 $dbStream = new StreamHandler('log/emailReminder.log', Logger::WARNING);
 $log->pushHandler($dbStream);
 */
+
+$userEmail = $_POST["emailAddy"];
+
 //CONNECT TO DATABASE
 try {
     $connectToDb = DBConnect::getConnection();
@@ -23,20 +27,10 @@ try {
     die();
 }
 
-//RETRIEVE VALID USER DATA FROM DATABASE
 try {
-    $optoutUserData = OptoutDAO::getUserData($connectToDb);
-} catch (Exception $e) {
-    $log->error($e->getMessage());
-    die("Query failed!!\r\n");
-}
-
-try {
-    $xxxx = new AddUserToDB($connectToDb, $optoutUserData);
-    $xxxx->setOptoutUser($connectToDb); //$optoutUserData);
-    //$xxxx->AddUserToDB::setOptoutUser($optoutUserData,$connectToDb);
+    UpdateUserSettings::setOptoutUserSetting($connectToDb, $userEmail);
     //print_r($connectToDb);
 } catch (Exception $e) {
-    $log->error($e->getMessage());
+    //$log->error($e->getMessage());
     echo "Somethin aint working\n" . $e->getMessage();
 }
