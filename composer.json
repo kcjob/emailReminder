@@ -1,12 +1,11 @@
 {
   "autoload":{
     "psr-4":{
-      "model\\db\\" : "model/db/",
-      "controller\\" : "controller"
+      "UserSettings\\" : "userSettings"
     }
   },
   "require": {
-    "monolog/monolog": "^1.22",
+    "monolog/monolog": "^1.23",
     "twig/twig": "~2.0",
     "swiftmailer/swiftmailer":"^6.0"
   }
